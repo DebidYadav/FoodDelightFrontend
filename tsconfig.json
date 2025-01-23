@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "lib": ["dom", "es2015"],
+      "jsx": "react-jsx",  // This is required for React 17 and later
+      "moduleResolution": "node",
+      "esModuleInterop": true
+    }
+  }
+  
