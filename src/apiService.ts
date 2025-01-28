@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-// Fetch all messages from the backend
-export const fetchMessages = async () => {
-  const response = await axios.get('http://localhost:3000/api/messages');
+//Fetch restaurants
+export const fetchRestaurants = async () =>{
+  const response = await axios.get('http://localhost:3000/api/get-restaurants');
   return response.data;
-};
+}
 
-// Add a new message
-export const addMessage = async (content: string) => {
-  const response = await axios.post('http://localhost:3000/api/messages', { content });
-  return response.data;
-};
+//Search restaurant based on name
+export const searchRestaurant = async (findName: any) => {
+  const response = await axios.get('http://localhost:3000/api/get-restaurantByName', {params: {name: findName}});
+  return response;
+}

@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { fetchMessages, addMessage } from './apiService';
+import {fetchRestaurants, searchRestaurant} from './apiService';
+import CardComponet from './Components/CardComponent';
 
 const App: React.FC = () => {
-  const [messages, setMessages] = useState<{ id: number; content: string }[]>([]);
-  const [newMessage, setNewMessage] = useState<string>('');
+  const [findName, setfindName] = useState<any>('');
+  const [restaurants, setRestaurants] = useState<{id:number, name: string, cusine: string, image: string}[]>([]);
 
-  useEffect(() => {
-    const loadMessages = async () => {
-      const data = await fetchMessages();
-      setMessages(data);
+  useEffect(()=>{
+    const loadRestaurants = async () =>{
+      const data = await fetchRestaurants();
+      setRestaurants(data);
     };
+    loadRestaurants();
+  },[]);
 
-    loadMessages();
-  }, []);
-
-  const handleAddMessage = async () => {
-    if (newMessage.trim() === '') return;
-    const addedMessage = await addMessage(newMessage);
-    setMessages((prev) => [...prev, addedMessage]);
-    setNewMessage('');
+  const findRestaurant = async () => {
+    if (findName.trim() === '') return;
+    const data = await searchRestaurant(findName);
+    setfindName((prev) => [...prev, data]);
+    setfindName('');
   };
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Frontend</h1>
-      <ul>
-        {messages.map((msg) => (
-          <li key={msg.id}>{msg.content}</li>
-        ))}
-      </ul>
+      <h1>Food Delight</h1>
       <input
         type="text"
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-        placeholder="Type a message"
+        value={findName}
+        onChange={(e) => setfindName(e.target.value)}
+        placeholder="Search"
       />
-      <button onClick={handleAddMessage}>Add Message</button>
+      <button onClick={findRestaurant}>Search</button>
+      <div style={{display: 'grid', gridTemplateColumns:'repeat(4, 1fr)' ,gap: '8px'}}>
+        {restaurants.map((restaurant: { id: number; name: string; cusine: string; image: string; })=>(
+            <CardComponet restaurant={restaurant} />
+        ))};
+      </div>
     </div>
   );
 };
