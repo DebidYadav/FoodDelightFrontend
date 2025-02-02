@@ -9,5 +9,5 @@ export const fetchRestaurants = async () =>{
 //Search restaurant based on name
 export const searchRestaurant = async (findName: any) => {
   const response = await axios.get('http://localhost:3000/api/get-restaurantByName', {params: {name: findName}});
-  return response;
+  return response.data;
 }
