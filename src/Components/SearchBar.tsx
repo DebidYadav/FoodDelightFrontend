@@ -4,27 +4,28 @@ import { searchRestaurant } from "./../apiService";
 const findRestaurant = async (findName: string) => {
   if (findName === '') return [];
   const data = await searchRestaurant(findName);
-  console.log('Data', data);
   return data;
 };
 
 const SearchBar = ({ setRestaurants }) => {
   const [findName, setFindName] = useState<string>('');
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const filteredRestaurants = await findRestaurant(findName);
+    setRestaurants(filteredRestaurants);
+  };
+
   return (
     <div>
-      <form onSubmit={async (e) => {
-        e.preventDefault();
-        const filteredRestaurants = await findRestaurant(findName);
-        setRestaurants(filteredRestaurants);
-      }}>
+      <form onSubmit={handleSearch}>
         <input
           type="text"
           value={findName}
           onChange={(e) => setFindName(e.target.value)}
           placeholder="Search"
         />
-        <button>Search</button>
+        <button type="submit">Search</button>
       </form>
     </div>
   );
