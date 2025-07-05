@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import App from './App';
-import SignUpForm from './Components/SignUpForm';
-import LoginForm from './Components/LoginForm';
+import SignUpForm from '../components/forms/SignUpForm';
+import LoginForm from '../components/forms/LoginForm';
 
 const AppRoutes: React.FC = () => {
   return (
