@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addCustomer } from '../apiService';
 
 const SignUpForm: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -16,9 +17,14 @@ const SignUpForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Add form submission logic here
+        const payload = {
+            username: formData.username,
+            email: formData.email,
+            password: formData.password
+        }
+        await addCustomer(payload);
         console.log(formData);
     };
 

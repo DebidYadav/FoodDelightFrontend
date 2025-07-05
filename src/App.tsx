@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchRestaurants } from './apiService';
 import CardComponent from './Components/CardComponent';
 import SearchBar from './Components/SearchBar';
 
 const App: React.FC = () => {
   const [restaurants, setRestaurants] = useState<{ id: number, name: string, cusine: string, image: string }[]>([]);
-  // const history = useHistory();
+  const navigate = useNavigate();
   
-  // const signUp = () => {
-  //   history.push('/signup');
-  // };
+  const signUp = () => {
+    navigate('/signup');
+  };
 
-  // const login = () => {
-  //   history.push('/login');
-  // };
+  const login = () => {
+    navigate('/login');
+  };
 
   useEffect(() => {
     const loadRestaurants = async () => {
@@ -38,8 +38,8 @@ const App: React.FC = () => {
     <div style={{ padding: '20px' }}>
       <h1>Food Delight</h1>
       <SearchBar setRestaurants={setRestaurants} />
-      {/* <button onClick={signUp}>Sign Up</button>
-      <button onClick={login}>Sign In</button> */}
+      <button onClick={signUp}>Sign Up</button>
+      <button onClick={login}>Sign In</button>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
         <CardContainer restaurantsList={restaurants} />
       </div>

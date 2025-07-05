@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { loginCustomer } from '../apiService';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         // Handle form submission logic here
+        const payload = {
+            email: email,
+            password: password
+        }
+        await loginCustomer(payload);
         console.log('Email:', email);
         console.log('Password:', password);
     };
