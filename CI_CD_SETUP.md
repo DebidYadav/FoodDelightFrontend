@@ -50,10 +50,6 @@ NETLIFY_AUTH_TOKEN=your_netlify_auth_token
 NETLIFY_SITE_ID=your_netlify_site_id
 ```
 
-#### For Vercel Deployment:
-```
-VERCEL_TOKEN=your_vercel_token
-```
 
 ### 3. Local Development Setup
 
