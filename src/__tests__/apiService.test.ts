@@ -1,9 +1,4 @@
 // Mock axios before importing the service
-jest.mock('axios', () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-}));
-
 import axios from 'axios';
 import {
   fetchRestaurants,
@@ -11,6 +6,11 @@ import {
   addCustomer,
   loginCustomer
 } from '../services/apiService';
+
+jest.mock('axios', () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+}));
 
 const mockAxios = axios as jest.Mocked<typeof axios>;
 

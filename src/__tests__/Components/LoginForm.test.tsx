@@ -4,12 +4,12 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import LoginForm from '../../components/forms/LoginForm';
 
+import { loginCustomer } from '../../services/apiService';
+
 // Mock the API service
 jest.mock('../../services/apiService', () => ({
   loginCustomer: jest.fn()
 }));
-
-import { loginCustomer } from '../../services/apiService';
 
 const mockLoginCustomer = loginCustomer as jest.MockedFunction<typeof loginCustomer>;
 

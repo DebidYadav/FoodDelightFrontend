@@ -4,12 +4,12 @@ import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../pages/App';
 
+import { fetchRestaurants } from '../services/apiService';
+
 // Mock the API service
 jest.mock('../services/apiService', () => ({
   fetchRestaurants: jest.fn()
 }));
-
-import { fetchRestaurants } from '../services/apiService';
 
 const mockFetchRestaurants = fetchRestaurants as jest.MockedFunction<typeof fetchRestaurants>;
 
